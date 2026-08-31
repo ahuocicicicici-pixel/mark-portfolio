@@ -21,12 +21,12 @@ async function render(pathname = "/") {
 function assertSharedPortfolioContent(html) {
   assert.match(html, /2021/);
   assert.match(html, /海外红人营销/);
-  assert.match(html, /Creator Operations/);
+  assert.match(html, /达人 OS 系统/);
   assert.match(html, /50\+[\s\S]*合作客户/);
   assert.match(html, /100\+[\s\S]*执行项目/);
   assert.match(html, /2000\+[\s\S]*达人内容上线/);
   assert.match(html, /6 人[\s\S]*直接管理/);
-  assert.match(html, /千万级[\s\S]*项目资金/);
+  assert.match(html, /千万美元级[\s\S]*项目资金/);
   assert.match(html, /recommendation-redacted\.png/);
   assert.doesNotMatch(html, /GrowMax|grow-max|表内实收|毛利|利润/);
 }
@@ -39,18 +39,25 @@ test("server-renders the compact vivid portfolio", async () => {
   const html = await response.text();
   assert.match(html, /<title>Mark — Creator Marketing &amp; Systems<\/title>/i);
   assertSharedPortfolioContent(html);
-  assert.match(html, /CREATOR[\s\S]*OPERATOR/);
+  assert.match(html, /2021—2026[\s\S]*海外红人[\s\S]*营销/);
   assert.match(html, /BUSINESS SNAPSHOT/);
-  assert.match(html, /MAIN CASE · 01/);
+  assert.match(html, /WORK OUTPUT · 01/);
   assert.match(html, /完整工作流/);
   assert.match(html, /id="workflow-0"[^>]*checked/);
   assert.match(html, /上一个环节/);
   assert.match(html, /下一个环节/);
   assert.doesNotMatch(html, /<details[^>]*class="vivid-workflow"|展开看完整工作流/);
-  assert.match(html, /COCO Desktop Pet/);
-  assert.match(html, /KOL Intelligence Badge/);
+  assert.doesNotMatch(html, /vivid-case-grid|不是给运营加一个 AI 对话框/);
+  assert.match(html, /WORK OUTPUT · 02/);
+  assert.match(html, /达人情报谷歌插件/);
+  assert.match(html, /creator-intel-profile\.png/);
+  assert.match(html, /AM 和运营团队/);
+  assert.match(html, /团队整体效率提升约 30%/);
+  assert.match(html, /PERSONAL PRODUCTS · 03—04/);
+  assert.match(html, /COCOPet Desktop Pet/);
   assert.match(html, /Mowen Tarot/);
-  assert.ok(html.indexOf("Creator Operations") < html.indexOf("COCO Desktop Pet"));
+  assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("达人情报谷歌插件"));
+  assert.ok(html.indexOf("达人情报谷歌插件") < html.indexOf("COCOPet Desktop Pet"));
   assert.doesNotMatch(html, /选择项目|vivid-project-radio|vivid-controls/);
 });
 
@@ -60,11 +67,11 @@ test("server-renders the cinematic portfolio", async () => {
 
   const html = await response.text();
   assertSharedPortfolioContent(html);
-  assert.match(html, /COCO[\s\S]*Desktop Pet/);
-  assert.match(html, /KOL Intelligence Badge/);
+  assert.match(html, /COCOPet[\s\S]*Desktop Pet/);
+  assert.match(html, /达人情报谷歌插件/);
   assert.match(html, /Mowen Tarot/);
   assert.match(html, /20w\+/);
-  assert.ok(html.indexOf("Creator Operations") < html.indexOf("COCO Desktop Pet"));
+  assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("COCOPet Desktop Pet"));
   assert.match(html, /Systems Builder/);
   assert.match(html, /查看系统怎么跑/);
   assert.match(html, /最近 10 条内容/);

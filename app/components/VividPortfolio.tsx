@@ -3,8 +3,9 @@ import { capabilities, experience, metrics, operationsFlow, profile, projects } 
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
 
-const mainProject = projects[0];
-const supportingProjects = projects.slice(1);
+const mainProject = projects.find((project) => project.id === "operations")!;
+const browserProject = projects.find((project) => project.id === "kol-intel")!;
+const personalProjects = projects.filter((project) => project.id === "coco" || project.id === "mowen");
 
 export function VividPortfolio() {
   return (
@@ -13,17 +14,18 @@ export function VividPortfolio() {
         <a className="vivid-mark" href="#top" aria-label="回到顶部">M<span>+</span></a>
         <p>{profile.title}</p>
         <nav aria-label="页面导航">
-          <a href="#main-case">主案例</a>
-          <a href="#more-work">其他作品</a>
+          <a href="#main-case">工作产出</a>
+          <a href="#more-work">个人产品</a>
           <a href="#contact">联系</a>
         </nav>
       </header>
 
       <section className="vivid-hero" id="top">
         <div className="vivid-hero-copy">
-          <p className="vivid-kicker">{profile.eyebrow}</p>
-          <h1><span>MARK</span><br />CREATOR<br />OPERATOR</h1>
-          <p>{profile.tagline}</p>
+          <p className="vivid-kicker"><strong>{profile.name}</strong><span>{profile.heroRole}</span></p>
+          <h1><span>2021—2026</span><br />海外红人<br />营销</h1>
+          <p className="vivid-hero-proof">{profile.heroProof}</p>
+          <p className="vivid-hero-path">{profile.tagline}</p>
         </div>
 
         <aside className="vivid-snapshot" aria-label="业务规模">
@@ -39,7 +41,6 @@ export function VividPortfolio() {
         </aside>
 
         <div className="vivid-hero-foot">
-          <p>{profile.intro}</p>
           <div className="vivid-capability-rail" aria-label="核心能力">
             {capabilities.map((item) => (
               <span key={item.number}><b>{item.number}</b>{item.title}</span>
@@ -51,27 +52,10 @@ export function VividPortfolio() {
 
       <section className="vivid-main-case" id="main-case">
         <header className="vivid-case-heading">
-          <p>MAIN CASE · 01</p>
+          <p>WORK OUTPUT · 01</p>
           <h2>{mainProject.name}</h2>
           <p>{mainProject.summary}</p>
         </header>
-
-        <div className="vivid-case-grid">
-          <figure className="vivid-case-media">
-            <img src={mainProject.image} alt={mainProject.imageAlt} />
-            <figcaption><span>真实项目素材 · 已去敏</span><strong>从 Brief 到回复回写</strong></figcaption>
-          </figure>
-
-          <div className="vivid-case-copy">
-            <p className="vivid-case-lead">不是给运营加一个 AI 对话框，而是把我实际做项目时的判断，放回团队每天使用的流程里。</p>
-            <dl>
-              <div><dt>问题</dt><dd>{mainProject.problem}</dd></div>
-              <div><dt>我负责</dt><dd>{mainProject.role}</dd></div>
-              <div><dt>落地结果</dt><dd>{mainProject.result}</dd></div>
-            </dl>
-            {mainProject.link ? <a className="vivid-text-link" href={mainProject.link} target="_blank" rel="noreferrer">{mainProject.linkLabel} <Arrow /></a> : null}
-          </div>
-        </div>
 
         <section className="vivid-workflow-carousel" aria-labelledby="workflow-title">
           {operationsFlow.map((step, index) => (
@@ -111,17 +95,40 @@ export function VividPortfolio() {
               })}
             </div>
           </div>
+          {mainProject.link ? <a className="vivid-workflow-link" href={mainProject.link} target="_blank" rel="noreferrer">打开个人演示版 <Arrow /></a> : null}
         </section>
+      </section>
+
+      <section className="vivid-browser-case" aria-labelledby="browser-case-title">
+        <header className="vivid-browser-heading">
+          <p>WORK OUTPUT · 02</p>
+          <div>
+            <span>KOL INTELLIGENCE BADGE</span>
+            <h2 id="browser-case-title">{browserProject.name}</h2>
+          </div>
+          <p>{browserProject.summary}</p>
+        </header>
+
+        <figure className="vivid-browser-media">
+          <img src={browserProject.image} alt={browserProject.imageAlt} />
+          <figcaption>真实插件界面 · 已去敏</figcaption>
+        </figure>
+
+        <div className="vivid-browser-proof">
+          <article><span>01 · 场景</span><p>{browserProject.problem}</p></article>
+          <article><span>02 · 我负责</span><p>{browserProject.role}</p></article>
+          <article><span>03 · 落地</span><p>{browserProject.result}</p></article>
+        </div>
       </section>
 
       <section className="vivid-more-work" id="more-work">
         <header>
-          <p>SUPPORTING WORK · 02—04</p>
-          <div><h2>业务之外，我也会把想法做成产品。</h2><p>三个项目分别补充角色产品、浏览器工具和内容验证能力。</p></div>
+          <p>PERSONAL PRODUCTS · 03—04</p>
+          <div><h2>工作之外，我也会把想法做成产品。</h2><p>COCOPet 已形成稳定可用的桌宠体验；Mowen Tarot 则是我第一次把东方审美、占卜产品和内容验证完整做通。</p></div>
         </header>
 
         <div className="vivid-project-grid">
-          {supportingProjects.map((project) => (
+          {personalProjects.map((project) => (
             <article className={`vivid-project-card vivid-card-${project.id}`} key={project.id}>
               <figure className={`vivid-card-media vivid-card-crop-${project.crop ?? "top"}`}>
                 <img src={project.image} alt={project.imageAlt} />
@@ -149,7 +156,7 @@ export function VividPortfolio() {
 
         <footer className="vivid-contact">
           <p>OPEN TO THE NEXT CONVERSATION</p>
-          <h2>懂业务，能带团队，<br />也能把经验做成系统。</h2>
+          <h2>把积累的业务经验，<br />沉淀成所有人都能复用的 Skill 和产品。</h2>
           <div>
             <span>{profile.location}</span>
             <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a>

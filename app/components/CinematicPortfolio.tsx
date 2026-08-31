@@ -64,7 +64,7 @@ export function CinematicPortfolio() {
         <header>
           <p className="cinematic-section-label">02 / MAIN CASE</p>
           <div>
-            <h2>Creator<br />Operations</h2>
+            <h2>{operations.name}</h2>
             <p>{operations.summary}</p>
           </div>
         </header>
@@ -141,7 +141,7 @@ export function CinematicPortfolio() {
         </div>
         <div className="cinematic-footer-links">
           <div><span>IDENTITY</span><strong>Mark</strong><p>{profile.title}</p></div>
-          <div><span>PROJECTS</span><a href="#cinematic-case">Creator Operations</a><a href={profile.links.coco}>COCO</a><a href={profile.links.tarot}>Mowen Tarot</a></div>
+          <div><span>PROJECTS</span><a href="#cinematic-case">{operations.name}</a><a href={profile.links.coco}>COCO</a><a href={profile.links.tarot}>Mowen Tarot</a></div>
           <div><span>STATUS</span><p>{profile.location}</p><a href="#cinematic-top">Back to top ↑</a></div>
         </div>
         <small>© 2026 MARK · CREATOR MARKETING &amp; SYSTEMS</small>
