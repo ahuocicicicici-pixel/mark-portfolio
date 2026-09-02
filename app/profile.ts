@@ -44,7 +44,7 @@ export const profile = {
   heroRole: "OVERSEAS CREATOR MARKETING",
   title: "海外红人营销操盘者 × 系统构建者",
   heroProof:
-    "5 年专注海外红人营销。曾服务多家国内头部游戏出海客户；2024 年起进入 AI 产品出海领域，多次与海外头部 AI 创作者合作。目前带领 6 人运营团队，累计负责千万美元级项目资金。",
+    "5+ 年专注海外红人营销。曾服务多家国内头部游戏出海客户；2024 年起进入 AI 产品出海领域，多次与海外头部 AI 创作者合作。目前带领 6 人运营团队，累计负责千万级项目资金。",
   tagline:
     "一线执行、组建团队、搭建运营体系，再到独立开发内部产品，我不断把个人经验变成团队可复用的能力，也让公司整体效率持续提升。",
   intro:
@@ -59,11 +59,11 @@ export const profile = {
 };
 
 export const metrics: Metric[] = [
-  { value: "50+", label: "合作客户", note: "出海科技与 AI 产品" },
-  { value: "100+", label: "执行项目", note: "从 Brief 到内容上线" },
-  { value: "2000+", label: "达人内容上线", note: "多平台、多市场协作" },
+  { value: "100+", label: "合作客户", note: "职业累计" },
+  { value: "200+", label: "执行项目", note: "Brief 至上线" },
+  { value: "2000+", label: "达人内容上线", note: "多市场协作" },
   { value: "6 人", label: "直接管理", note: "运营团队" },
-  { value: "千万美元级", label: "项目资金", note: "公开区间口径" },
+  { value: "千万级", label: "项目资金", note: "公开区间" },
 ];
 
 export const capabilities: Capability[] = [

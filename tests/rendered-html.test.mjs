@@ -22,11 +22,11 @@ function assertSharedPortfolioContent(html) {
   assert.match(html, /2021/);
   assert.match(html, /海外红人营销/);
   assert.match(html, /达人 OS 系统/);
-  assert.match(html, /50\+[\s\S]*合作客户/);
-  assert.match(html, /100\+[\s\S]*执行项目/);
+  assert.match(html, /100\+[\s\S]*合作客户/);
+  assert.match(html, /200\+[\s\S]*执行项目/);
   assert.match(html, /2000\+[\s\S]*达人内容上线/);
   assert.match(html, /6 人[\s\S]*直接管理/);
-  assert.match(html, /千万美元级[\s\S]*项目资金/);
+  assert.match(html, /千万级[\s\S]*项目资金/);
   assert.match(html, /recommendation-redacted\.png/);
   assert.doesNotMatch(html, /GrowMax|grow-max|表内实收|毛利|利润/);
 }
@@ -38,6 +38,7 @@ test("server-renders the compact vivid portfolio", async () => {
 
   const html = await response.text();
   assert.match(html, /<title>Mark — Creator Marketing &amp; Systems<\/title>/i);
+  assert.match(html, /5\+ 年专注海外红人营销/);
   assertSharedPortfolioContent(html);
   assert.match(html, /2021—2026[\s\S]*海外红人[\s\S]*营销/);
   assert.match(html, /BUSINESS SNAPSHOT/);
