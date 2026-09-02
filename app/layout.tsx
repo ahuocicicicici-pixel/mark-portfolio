@@ -10,19 +10,19 @@ export async function generateMetadata(): Promise<Metadata> {
   const image = new URL("/og.png", origin).toString();
 
   return {
-    title: "Mark — Creator Marketing & Systems",
-    description: "我从 2021 年开始做海外红人营销。项目多了，团队大了，也开始自己搭系统。",
+    title: "Mark Shi — Creator Growth & AI Operations Product",
+    description: "5+ 年海外红人营销经验，负责 Creator Growth 业务与 6 人运营团队，并独立开发已在内部持续使用的 Creator Operations OS。",
     icons: { icon: "/favicon.png", shortcut: "/favicon.png" },
     openGraph: {
-      title: "Mark — Creator Marketing & Systems",
-      description: "I lead creator operations—and build the systems behind it.",
+      title: "Mark Shi — Creator Growth & AI Operations Product",
+      description: "I lead overseas creator growth and turn frontline operations into working AI products.",
       type: "website",
-      images: [{ url: image, width: 1200, height: 630, alt: "Mark — Creator Marketing & Systems" }],
+      images: [{ url: image, width: 1200, height: 630, alt: "Mark Shi — Creator Growth & AI Operations Product" }],
     },
     twitter: {
       card: "summary_large_image",
-      title: "Mark — Creator Marketing & Systems",
-      description: "I lead creator operations—and build the systems behind it.",
+      title: "Mark Shi — Creator Growth & AI Operations Product",
+      description: "I lead overseas creator growth and turn frontline operations into working AI products.",
       images: [image],
     },
   };

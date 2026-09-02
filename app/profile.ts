@@ -39,31 +39,33 @@ export type PortfolioProject = {
 };
 
 export const profile = {
-  name: "Mark",
-  eyebrow: "MARK · OVERSEAS CREATOR MARKETING",
-  heroRole: "OVERSEAS CREATOR MARKETING",
-  title: "海外红人营销操盘者 × 系统构建者",
+  name: "Mark Shi",
+  eyebrow: "MARK SHI · CREATOR GROWTH × AI OPERATIONS PRODUCT",
+  heroRole: "CREATOR GROWTH × AI OPERATIONS PRODUCT",
+  title: "海外 Creator Growth 负责人 × AI 业务产品化实践者",
   heroProof:
-    "5+ 年专注海外红人营销。曾服务多家国内头部游戏出海客户；2024 年起进入 AI 产品出海领域，多次与海外头部 AI 创作者合作。目前带领 6 人运营团队，累计负责千万级项目资金。",
+    "5+ 年海外红人营销经验，0–1 搭建并管理 6 人运营团队；同时独立开发已在 GrowMax 内部持续运行的 Creator Operations OS。",
   tagline:
-    "一线执行、组建团队、搭建运营体系，再到独立开发内部产品，我不断把个人经验变成团队可复用的能力，也让公司整体效率持续提升。",
+    "我做海外 Creator Growth，也把一线执行中的判断、数据和工作流程做成团队真正使用的产品。",
   intro:
-    "我从 2021 年开始做海外红人营销，现在负责运营团队，主要服务出海 AI 产品。项目里的选人、建联、谈价和交付由我带着团队完成；反复出现的工作，我会继续往前做成产品。",
-  location: "Shanghai · Open to new opportunities",
+    "我从 2021 年开始做海外红人营销，现在同时负责 Creator Growth 业务、运营团队和内部产品。",
+  location: "Shanghai · Open to AI Creator Growth / AI Product opportunities",
   links: {
+    email: "mailto:marrrrrk@163.com",
     github: "https://github.com/ahuocicicicici-pixel",
     operations: "https://ops.mccoco.xyz/",
     coco: "https://mccoco.xyz/",
     tarot: "https://mowentarot.xyz/",
+    creatorResume: "/resumes/mark-shi-creator-growth-cn.pdf",
+    productResume: "/resumes/mark-shi-ai-product-cn.pdf",
   },
 };
 
 export const metrics: Metric[] = [
   { value: "100+", label: "合作客户", note: "职业累计" },
-  { value: "200+", label: "执行项目", note: "Brief 至上线" },
-  { value: "2000+", label: "达人内容上线", note: "多市场协作" },
+  { value: "200+", label: "完整 Campaign", note: "Brief 至上线" },
+  { value: "2000+", label: "KOL 内容上线", note: "不含 KOC" },
   { value: "6 人", label: "直接管理", note: "运营团队" },
-  { value: "千万级", label: "项目资金", note: "公开区间" },
 ];
 
 export const capabilities: Capability[] = [
@@ -91,37 +93,37 @@ export const operationsFlow = [
   {
     number: "01",
     title: "推荐",
-    body: "读取 Brief 和历史数据，按市场、平台、内容方向、量级与成本筛出候选达人。",
+    body: "读取 Brief，从已标签和向量化的达人库中召回候选人，再按市场、平台、内容与成本筛选。",
     image: "/projects/outreach/flow/recommendation-redacted.png",
     alt: "去敏后的达人推荐页面",
   },
   {
     number: "02",
-    title: "调查",
-    body: "读取公开主页、Bio 与最近 10 条内容，判断受众、内容方向和品牌匹配度。",
-    image: "/projects/outreach/flow/research-redacted.png",
-    alt: "去敏后的达人调查页面",
+    title: "建联",
+    body: "结合达人历史内容和视频文案生成个性化邮件，并按账号时区在对方工作时间分批发送。",
+    image: "/projects/outreach/flow/draft-redacted.png",
+    alt: "去敏后的个性化邮件草稿页面",
   },
   {
     number: "03",
-    title: "建联",
-    body: "结合具体内容生成询价草稿，支持批量调查、起草、发送与 Follow-up。",
-    image: "/projects/outreach/flow/draft-redacted.png",
-    alt: "去敏后的定制询价邮件页面",
+    title: "报价回写",
+    body: "自动读取达人回复，解析报价、币种和交付形式，再回写到对应的飞书项目表。",
+    image: "/projects/outreach/flow/reply-parse-redacted.png",
+    alt: "去敏后的达人报价解析与回写页面",
   },
   {
     number: "04",
-    title: "回写",
-    body: "解析回复里的报价、交付形式和合作阶段，回写表格并提醒对应运营查看。",
-    image: "/projects/outreach/flow/reply-parse-redacted.png",
-    alt: "去敏后的达人回复解析页面",
+    title: "Follow-up",
+    body: "识别未回复的达人，根据原邮件与项目上下文生成个性化 Follow-up，避免人工逐个检查。",
+    image: "/projects/outreach/flow/draft-redacted.png",
+    alt: "去敏后的 Follow-up 邮件草稿页面",
   },
   {
     number: "05",
-    title: "头部建联",
-    body: "整理商业模式、合作风险与切入点，单独维护经纪人、MCN 和每次触达记录。",
-    image: "/projects/outreach/flow/headliner-redacted.png",
-    alt: "去敏后的头部达人建联页面",
+    title: "执行跟踪",
+    body: "根据邮件记录更新项目状态，标记当前卡在客户、达人还是运营，并给出建议的下一步。",
+    image: "/projects/outreach/campaigns-overview-redacted.jpg",
+    alt: "去敏后的项目执行跟踪页面",
   },
 ];
 
@@ -132,12 +134,12 @@ export const projects: PortfolioProject[] = [
     type: "MAIN CASE · INTERNAL PRODUCT",
     name: "达人 OS 系统",
     shortName: "Operations",
-    summary: "达人推荐、个性化邮件定时发送、报价自动识别和项目进度跟踪，都在同一条工作流里完成。产品设计与开发由我从 0 到 1 独立完成，团队整体效率提升约 30%。",
+    summary: "把达人推荐、个性化邮件定时发送、报价解析、Follow-up 和项目进度跟踪接成一条真实工作流。产品由我从 0 到 1 独立完成。",
     problem: "项目资料散在表格、邮箱和个人经验里，规模一上来，很容易漏跟、漏抄，也很难交接。",
-    role: "业务规则、流程设计、产品定义与持续迭代。",
+    role: "业务规则、产品定义、交互、前后端、部署与 13 个大版本迭代均由我完成。",
     features: ["Brief 自动拆解与达人推荐", "最近 10 条内容调查", "定制邮件与批量 Follow-up", "回复报价解析与表格提醒", "头部达人单独建联"],
-    stack: ["Creator Marketing", "Workflow Design", "AI-assisted Research", "Feishu + Gmail"],
-    result: "已经接进日常项目；系统处理资料和草稿，运营保留发送、报价与风险判断。",
+    stack: ["React + TypeScript", "FastAPI + PostgreSQL", "Redis + Docker", "BGE-M3 + DeepSeek"],
+    result: "10 位真实用户持续使用 4 个月，累计处理 30+ 个项目；人均并行项目约从 3 个提升到 4 个，每位运营同时执行的达人数量约从 25+ 提升到 35。",
     image: "/projects/outreach/flow/recommendation-redacted.png",
     imageAlt: "达人 OS 系统去敏后的达人推荐界面",
     link: "https://ops.mccoco.xyz/",
@@ -203,12 +205,41 @@ export const projects: PortfolioProject[] = [
 export const experience = [
   {
     period: "2024.12—NOW",
-    title: "海外红人营销运营负责人",
-    body: "负责出海 AI 客户的项目交付，直接管理 6 名运营，并与资源中台协作。团队扩大后，我把一线规则继续做进工具。",
+    title: "GrowMax · 海外红人营销运营负责人 / Internal Product Owner",
+    body: "0–1 搭建 6 人运营团队、SOP 与新人培训体系，负责 AI 产品的海外 Creator Growth、红人广告加热与独签达人；同时独立开发内部 Creator Operations OS。",
   },
   {
     period: "2021.05—2024.10",
     title: "海外红人营销",
-    body: "服务 70+ 客户，完成 500+ 独立达人合作，客户复购率 62%。这组数字来自上一段经历，与当前公开口径分开。",
+    body: "从一线执行起步，累积游戏、科技与 AI 产品的海外红人策略、建联谈价和交付经验，并逐步建立可复用的数据口径与 SOP。",
   },
 ];
+
+export const businessCase = {
+  eyebrow: "BUSINESS CASE · 01",
+  title: "Kling AI 海外 Creator Growth",
+  summary: "面向欧美市场，覆盖 Instagram、TikTok 和 X，从拿到 Brief 开始，到达人提报、谈价、执行与内容上线全程负责。",
+  metrics: [
+    { value: "50+", label: "付费合作 KOL" },
+    { value: "100+", label: "上线内容" },
+    { value: "1.5→3.0", label: "持续复购版本" },
+  ],
+  responsibilities: ["读取 Brief 与市场拆解", "达人策略与名单提报", "建联、谈价与下单", "脚本审核与交付推进", "上线、加热与复盘"],
+  note: "另外，我独立完成 3 位海外创作者的建联、合约与独签谈判，帮助其实际付费合作价格提升 80%–100%，并带来 5 个新客户。",
+};
+
+export const productCase = {
+  eyebrow: "PRODUCT CASE · 02",
+  metrics: [
+    { value: "10", label: "内部真实用户", note: "6 位运营 + 4 位 AM" },
+    { value: "4 个月", label: "持续运行", note: "非 Demo" },
+    { value: "30+", label: "累计处理项目", note: "真实 Campaign" },
+    { value: "3→4", label: "人均并行项目", note: "约 +30%" },
+  ],
+  outcomes: [
+    "个性化邮件按达人时区自动分批发送，并统计模板回复率。",
+    "自动解析回复邮件中的报价并回写飞书，未回复达人自动 Follow-up。",
+    "根据邮件记录更新执行状态，判断项目卡在客户、达人还是运营并给出下一步。",
+    "达人库完成标签化与向量化，通过 RAG 召回符合 Brief 的已有达人。",
+  ],
+};

@@ -1,169 +1,244 @@
 /* eslint-disable @next/next/no-img-element */
-import { capabilities, experience, metrics, operationsFlow, profile, projects } from "../profile";
+import { businessCase, experience, metrics, operationsFlow, productCase, profile, projects } from "../profile";
 
 const Arrow = () => <span aria-hidden="true">↗</span>;
-
-const mainProject = projects.find((project) => project.id === "operations")!;
-const browserProject = projects.find((project) => project.id === "kol-intel")!;
+const operations = projects.find((project) => project.id === "operations")!;
+const creatorIntel = projects.find((project) => project.id === "kol-intel")!;
 const personalProjects = projects.filter((project) => project.id === "coco" || project.id === "mowen");
 
 export function VividPortfolio() {
   return (
-    <main className="vivid-page vivid-compact">
-      <header className="vivid-nav">
-        <a className="vivid-mark" href="#top" aria-label="回到顶部">M<span>+</span></a>
-        <p>{profile.title}</p>
+    <main className="portfolio-page">
+      <header className="portfolio-nav">
+        <a className="portfolio-wordmark" href="#top" aria-label="回到页面顶部">MARK SHI<span>.</span></a>
         <nav aria-label="页面导航">
-          <a href="#main-case">工作产出</a>
-          <a href="#more-work">个人产品</a>
-          <a href="#contact">联系</a>
+          <a href="#business">业务案例</a>
+          <a href="#product">产品案例</a>
+          <a href="#experience">经历</a>
         </nav>
+        <a className="portfolio-nav-cta" href={profile.links.creatorResume} download>下载简历 <Arrow /></a>
       </header>
 
-      <section className="vivid-hero" id="top">
-        <div className="vivid-hero-copy">
-          <p className="vivid-kicker"><strong>{profile.name}</strong><span>{profile.heroRole}</span></p>
-          <h1><span>2021—2026</span><br />海外红人<br />营销</h1>
-          <p className="vivid-hero-proof">{profile.heroProof}</p>
-          <p className="vivid-hero-path">{profile.tagline}</p>
+      <section className="portfolio-hero" id="top">
+        <div className="portfolio-hero-copy">
+          <p className="portfolio-eyebrow">{profile.eyebrow}</p>
+          <h1>懂海外 Creator Growth，<br />也把一线经验做成<br /><em>真实运行的 AI 产品。</em></h1>
+          <p className="portfolio-role">{profile.title}</p>
+          <p className="portfolio-lead">{profile.heroProof}</p>
+          <div className="portfolio-actions">
+            <a className="portfolio-button portfolio-button-primary" href="#business">看业务案例 <span aria-hidden="true">↓</span></a>
+            <a className="portfolio-button" href="#product">看产品案例 <span aria-hidden="true">↓</span></a>
+          </div>
         </div>
 
-        <aside className="vivid-snapshot" aria-label="业务规模">
-          <header><span>BUSINESS SNAPSHOT</span><small>截至 2026 · 公开区间</small></header>
-          <div>
+        <aside className="portfolio-hero-proof" aria-label="核心能力与业务规模">
+          <div className="portfolio-identity-symbol" aria-hidden="true">
+            <span>OPERATE</span>
+            <strong>BUSINESS</strong>
+            <i>↓</i>
+            <strong>SYSTEMS</strong>
+            <small>MAKE EXPERIENCE REUSABLE</small>
+          </div>
+          <div className="portfolio-metric-grid">
             {metrics.map((metric) => (
               <article key={metric.label}>
                 <strong>{metric.value}</strong>
                 <span>{metric.label}</span>
+                <small>{metric.note}</small>
               </article>
             ))}
           </div>
         </aside>
-
-        <div className="vivid-hero-foot">
-          <div className="vivid-capability-rail" aria-label="核心能力">
-            {capabilities.map((item) => (
-              <span key={item.number}><b>{item.number}</b>{item.title}</span>
-            ))}
-          </div>
-          <a href="#main-case">看核心案例 <span aria-hidden="true">↓</span></a>
-        </div>
       </section>
 
-      <section className="vivid-main-case" id="main-case">
-        <header className="vivid-case-heading">
-          <p>WORK OUTPUT · 01</p>
-          <h2>{mainProject.name}</h2>
-          <p>{mainProject.summary}</p>
+      <section className="portfolio-case portfolio-business-case" id="business">
+        <header className="portfolio-section-heading">
+          <p>{businessCase.eyebrow}</p>
+          <div>
+            <h2>{businessCase.title}</h2>
+            <p>{businessCase.summary}</p>
+          </div>
         </header>
 
-        <section className="vivid-workflow-carousel" aria-labelledby="workflow-title">
+        <div className="portfolio-business-layout">
+          <div className="portfolio-case-metrics portfolio-case-metrics-dark">
+            {businessCase.metrics.map((metric) => (
+              <article key={metric.label}><strong>{metric.value}</strong><span>{metric.label}</span></article>
+            ))}
+          </div>
+
+          <div className="portfolio-business-flow">
+            <p className="portfolio-mini-label">MY OWNERSHIP · FROM BRIEF TO LIVE</p>
+            <ol>
+              {businessCase.responsibilities.map((item, index) => (
+                <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><strong>{item}</strong></li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <aside className="portfolio-case-note">
+          <span>额外业务证据</span>
+          <p>{businessCase.note}</p>
+        </aside>
+      </section>
+
+      <section className="portfolio-case portfolio-product-case" id="product">
+        <header className="portfolio-section-heading">
+          <p>{productCase.eyebrow}</p>
+          <div>
+            <h2>{operations.name}</h2>
+            <p>{operations.summary}</p>
+          </div>
+        </header>
+
+        <div className="portfolio-product-metrics" aria-label="产品使用成果">
+          {productCase.metrics.map((metric) => (
+            <article key={metric.label}>
+              <strong>{metric.value}</strong>
+              <span>{metric.label}</span>
+              <small>{metric.note}</small>
+            </article>
+          ))}
+        </div>
+
+        <div className="portfolio-product-layout">
+          <figure className="portfolio-product-media">
+            <div className="portfolio-system-mockup" role="img" aria-label="达人 OS 系统公开版结构示意图">
+              <div className="portfolio-mockup-toolbar"><i /><span>达人 OS · PROJECT WORKSPACE</span><b>LIVE</b></div>
+              <div className="portfolio-mockup-body">
+                <aside><span /><span /><span /><span /></aside>
+                <section>
+                  <header><strong>CAMPAIGN PIPELINE</strong><i /></header>
+                  <div className="portfolio-mockup-summary"><span /><span /><span /></div>
+                  <div className="portfolio-mockup-table">
+                    <b /><b /><b /><b />
+                    <i /><i /><i /><i />
+                    <i /><i /><i /><i />
+                    <i /><i /><i /><i />
+                  </div>
+                </section>
+              </div>
+            </div>
+            <span className="portfolio-privacy-badge">基于真实产品结构重绘</span>
+            <figcaption>公开示意图 · 真实系统已在 GrowMax 内部持续使用 4 个月</figcaption>
+          </figure>
+          <div className="portfolio-product-outcomes">
+            <p className="portfolio-mini-label">WHAT THE SYSTEM CHANGED</p>
+            <ol>
+              {productCase.outcomes.map((item, index) => (
+                <li key={item}><span>{String(index + 1).padStart(2, "0")}</span><p>{item}</p></li>
+              ))}
+            </ol>
+          </div>
+        </div>
+
+        <div className="portfolio-workflow" aria-label="达人 OS 完整工作流">
           {operationsFlow.map((step, index) => (
             <input
-              className="vivid-workflow-radio"
+              className="portfolio-workflow-radio"
               type="radio"
-              name="vivid-workflow"
-              id={`workflow-${index}`}
+              name="portfolio-workflow"
+              id={`portfolio-workflow-${index}`}
               aria-label={`查看${step.title}环节`}
               defaultChecked={index === 0}
-              key={`workflow-radio-${step.number}`}
+              key={`portfolio-workflow-radio-${step.number}`}
             />
           ))}
-          <header>
-            <h3 id="workflow-title">完整工作流</h3>
-            <p>推荐 → 调查 → 建联 → 回复回写 → 头部建联</p>
-          </header>
-          <div className="vivid-workflow-viewport">
-            <div className="vivid-workflow-track">
+          <header><span>COMPLETE WORKFLOW</span><p>不是 Demo，而是从达人筛选到项目跟踪的日常生产工具。</p></header>
+          <div className="portfolio-workflow-viewport">
+            <div className="portfolio-workflow-track">
               {operationsFlow.map((step, index) => {
                 const previous = (index - 1 + operationsFlow.length) % operationsFlow.length;
                 const next = (index + 1) % operationsFlow.length;
                 return (
-                  <article className="vivid-workflow-slide" key={step.number}>
-                    <label className="vivid-workflow-arrow" htmlFor={`workflow-${previous}`} aria-label="上一个环节">←</label>
-                    <div className="vivid-workflow-content">
-                      <figure><img src={step.image} alt={step.alt} /></figure>
-                      <div>
-                        <p><span>{step.number}</span> / 05</p>
-                        <h4>{step.title}</h4>
-                        <p>{step.body}</p>
-                      </div>
-                    </div>
-                    <label className="vivid-workflow-arrow" htmlFor={`workflow-${next}`} aria-label="下一个环节">→</label>
+                  <article className="portfolio-workflow-slide" key={step.number}>
+                    <label htmlFor={`portfolio-workflow-${previous}`} aria-label="上一个环节">←</label>
+                    <div><span>{step.number} / 05</span><strong>{step.title}</strong><p>{step.body}</p></div>
+                    <label htmlFor={`portfolio-workflow-${next}`} aria-label="下一个环节">→</label>
                   </article>
                 );
               })}
             </div>
           </div>
-          {mainProject.link ? <a className="vivid-workflow-link" href={mainProject.link} target="_blank" rel="noreferrer">打开个人演示版 <Arrow /></a> : null}
-        </section>
-      </section>
-
-      <section className="vivid-browser-case" aria-labelledby="browser-case-title">
-        <header className="vivid-browser-heading">
-          <p>WORK OUTPUT · 02</p>
-          <div>
-            <span>KOL INTELLIGENCE BADGE</span>
-            <h2 id="browser-case-title">{browserProject.name}</h2>
-          </div>
-          <p>{browserProject.summary}</p>
-        </header>
-
-        <figure className="vivid-browser-media">
-          <img src={browserProject.image} alt={browserProject.imageAlt} />
-          <figcaption>真实插件界面 · 已去敏</figcaption>
-        </figure>
-
-        <div className="vivid-browser-proof">
-          <article><span>01 · 场景</span><p>{browserProject.problem}</p></article>
-          <article><span>02 · 我负责</span><p>{browserProject.role}</p></article>
-          <article><span>03 · 落地</span><p>{browserProject.result}</p></article>
         </div>
+
+        <footer className="portfolio-product-footer">
+          <p><span>我负责</span>{operations.role}</p>
+          <ul>{operations.stack.map((item) => <li key={item}>{item}</li>)}</ul>
+          <a className="portfolio-button portfolio-button-dark" href={operations.link} target="_blank" rel="noreferrer">打开个人演示版 <Arrow /></a>
+        </footer>
       </section>
 
-      <section className="vivid-more-work" id="more-work">
-        <header>
-          <p>PERSONAL PRODUCTS · 03—04</p>
-          <div><h2>工作之外，我也会把想法做成产品。</h2><p>COCOPet 已形成稳定可用的桌宠体验；Mowen Tarot 则是我第一次把东方审美、占卜产品和内容验证完整做通。</p></div>
+      <section className="portfolio-supporting" id="work">
+        <header className="portfolio-section-heading portfolio-section-heading-compact">
+          <p>SUPPORTING WORK · 03</p>
+          <div><h2>其他产品证据</h2><p>主项目之外，我也在解决达人数据判断和个人产品设计问题。</p></div>
         </header>
 
-        <div className="vivid-project-grid">
-          {personalProjects.map((project) => (
-            <article className={`vivid-project-card vivid-card-${project.id}`} key={project.id}>
-              <figure className={`vivid-card-media vivid-card-crop-${project.crop ?? "top"}`}>
-                <img src={project.image} alt={project.imageAlt} />
-                {project.secondaryImage ? <img className="vivid-card-secondary" src={project.secondaryImage} alt={project.secondaryAlt} /> : null}
-              </figure>
-              <div>
-                <span>{project.index} · {project.type}</span>
-                <h3>{project.name}</h3>
-                <p>{project.summary}</p>
-                <small>{project.result}</small>
-                {project.link ? <a href={project.link} target="_blank" rel="noreferrer">{project.linkLabel} <Arrow /></a> : null}
+        <article className="portfolio-intel-case">
+          <figure>
+            <div className="portfolio-intel-mockup" role="img" aria-label="达人情报谷歌插件公开版结构示意图">
+              <aside>
+                <header><b>IG</b><strong>库中记录</strong><i /></header>
+                <div className="portfolio-intel-metrics"><span /><span /><span /><span /></div>
+                <nav><b>概览</b><b>粉丝</b><b>评价</b></nav>
+                <section><strong>最近合作</strong><i /><i /><i /></section>
+              </aside>
+              <div className="portfolio-intel-profile">
+                <div className="portfolio-profile-head"><i /><span><b /><b /><b /></span></div>
+                <div className="portfolio-profile-lines"><i /><i /><i /><i /></div>
+                <footer><b>FOLLOW</b><b>MESSAGE</b></footer>
               </div>
+            </div>
+            <span className="portfolio-privacy-badge">基于真实插件结构重绘</span>
+          </figure>
+          <div>
+            <span>{creatorIntel.type}</span>
+            <h3>{creatorIntel.name}</h3>
+            <p>{creatorIntel.summary}</p>
+            <dl>
+              <div><dt>痛点</dt><dd>{creatorIntel.problem}</dd></div>
+              <div><dt>角色</dt><dd>{creatorIntel.role}</dd></div>
+              <div><dt>结果</dt><dd>{creatorIntel.result}</dd></div>
+            </dl>
+          </div>
+        </article>
+
+        <div className="portfolio-personal-row">
+          <header><span>PERSONAL EXPERIMENTS</span><p>两个个人项目作为产品感和完整交付能力的补充证据。</p></header>
+          {personalProjects.map((project) => (
+            <article key={project.id}>
+              <img src={project.image} alt={project.imageAlt} />
+              <div><span>{project.type}</span><h3>{project.name}</h3><p>{project.summary}</p>{project.link ? <a href={project.link} target="_blank" rel="noreferrer">打开项目 <Arrow /></a> : null}</div>
             </article>
           ))}
         </div>
       </section>
 
-      <section className="vivid-close" id="contact">
-        <div className="vivid-experience-compact">
-          <p>EXPERIENCE</p>
+      <section className="portfolio-experience" id="experience">
+        <header><p>EXPERIENCE</p><h2>从一线执行、带团队，<br />到把经验做成产品。</h2></header>
+        <ol>
           {experience.map((item) => (
-            <article key={item.period}><time>{item.period}</time><div><h3>{item.title}</h3><p>{item.body}</p></div></article>
+            <li key={item.period}><time>{item.period}</time><div><h3>{item.title}</h3><p>{item.body}</p></div></li>
           ))}
-        </div>
-
-        <footer className="vivid-contact">
-          <p>OPEN TO THE NEXT CONVERSATION</p>
-          <h2>把积累的业务经验，<br />沉淀成所有人都能复用的 Skill 和产品。</h2>
-          <div>
-            <span>{profile.location}</span>
-            <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a>
-            <a href="#top">回到顶部 ↑</a>
-          </div>
-        </footer>
+        </ol>
       </section>
+
+      <footer className="portfolio-contact" id="contact">
+        <p>OPEN TO AI CREATOR GROWTH / AI PRODUCT OPPORTUNITIES</p>
+        <h2>如果你在找一个既懂海外 Creator Growth，<br />也能把业务沉淀成 AI 产品的人，可以找我聊聊。</h2>
+        <div className="portfolio-resume-links">
+          <a href={profile.links.creatorResume} download><span>01</span><strong>Creator Growth 简历</strong><Arrow /></a>
+          <a href={profile.links.productResume} download><span>02</span><strong>AI 产品经理简历</strong><Arrow /></a>
+        </div>
+        <div className="portfolio-contact-links">
+          <span>{profile.location}</span>
+          <a href={profile.links.email}>邮件联系 <Arrow /></a>
+          <a href={profile.links.github} target="_blank" rel="noreferrer">GitHub <Arrow /></a>
+          <a href="#top">回到顶部 ↑</a>
+        </div>
+      </footer>
     </main>
   );
 }

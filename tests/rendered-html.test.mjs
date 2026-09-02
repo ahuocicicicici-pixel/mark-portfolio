@@ -23,43 +23,49 @@ function assertSharedPortfolioContent(html) {
   assert.match(html, /海外红人营销/);
   assert.match(html, /达人 OS 系统/);
   assert.match(html, /100\+[\s\S]*合作客户/);
-  assert.match(html, /200\+[\s\S]*执行项目/);
-  assert.match(html, /2000\+[\s\S]*达人内容上线/);
+  assert.match(html, /200\+[\s\S]*完整 Campaign/);
+  assert.match(html, /2000\+[\s\S]*KOL 内容上线/);
   assert.match(html, /6 人[\s\S]*直接管理/);
-  assert.match(html, /千万级[\s\S]*项目资金/);
-  assert.match(html, /recommendation-redacted\.png/);
-  assert.doesNotMatch(html, /GrowMax|grow-max|表内实收|毛利|利润/);
+  assert.doesNotMatch(html, /表内实收|毛利|利润/);
 }
 
-test("server-renders the compact vivid portfolio", async () => {
+test("server-renders the job-focused creator growth and product portfolio", async () => {
   const response = await render("/");
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Mark — Creator Marketing &amp; Systems<\/title>/i);
-  assert.match(html, /5\+ 年专注海外红人营销/);
+  assert.match(html, /<title>Mark Shi — Creator Growth &amp; AI Operations Product<\/title>/i);
+  assert.match(html, /懂海外 Creator Growth/);
+  assert.match(html, /真实运行的 AI 产品/);
   assertSharedPortfolioContent(html);
-  assert.match(html, /2021—2026[\s\S]*海外红人[\s\S]*营销/);
-  assert.match(html, /BUSINESS SNAPSHOT/);
-  assert.match(html, /WORK OUTPUT · 01/);
+  assert.match(html, /Kling AI 海外 Creator Growth/);
+  assert.match(html, /50\+[\s\S]*付费合作 KOL/);
+  assert.match(html, /100\+[\s\S]*上线内容/);
+  assert.match(html, /1\.5→3\.0/);
+  assert.match(html, /GrowMax/);
+  assert.match(html, /10[\s\S]*内部真实用户/);
+  assert.match(html, /4 个月[\s\S]*持续运行/);
+  assert.match(html, /30\+[\s\S]*累计处理项目/);
+  assert.match(html, /3→4[\s\S]*人均并行项目[\s\S]*约 \+30%/);
   assert.match(html, /完整工作流/);
-  assert.match(html, /id="workflow-0"[^>]*checked/);
+  assert.match(html, /id="portfolio-workflow-0"[^>]*checked/);
   assert.match(html, /上一个环节/);
   assert.match(html, /下一个环节/);
-  assert.doesNotMatch(html, /<details[^>]*class="vivid-workflow"|展开看完整工作流/);
-  assert.doesNotMatch(html, /vivid-case-grid|不是给运营加一个 AI 对话框/);
-  assert.match(html, /WORK OUTPUT · 02/);
+  assert.match(html, /执行跟踪/);
   assert.match(html, /达人情报谷歌插件/);
-  assert.match(html, /creator-intel-profile\.png/);
+  assert.match(html, /基于真实插件结构重绘/);
+  assert.match(html, /达人情报谷歌插件公开版结构示意图/);
   assert.match(html, /AM 和运营团队/);
-  assert.match(html, /团队整体效率提升约 30%/);
-  assert.match(html, /PERSONAL PRODUCTS · 03—04/);
   assert.match(html, /COCOPet Desktop Pet/);
   assert.match(html, /Mowen Tarot/);
+  assert.match(html, /mark-shi-creator-growth-cn\.pdf/);
+  assert.match(html, /mark-shi-ai-product-cn\.pdf/);
+  assert.match(html, /达人 OS 系统公开版结构示意图/);
+  assert.doesNotMatch(html, /creator-intel-profile\.png|recommendation-redacted\.png/);
   assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("达人情报谷歌插件"));
   assert.ok(html.indexOf("达人情报谷歌插件") < html.indexOf("COCOPet Desktop Pet"));
-  assert.doesNotMatch(html, /选择项目|vivid-project-radio|vivid-controls/);
+  assert.doesNotMatch(html, /千万级|选择项目|vivid-project-radio|vivid-controls/);
 });
 
 test("server-renders the cinematic portfolio", async () => {
@@ -71,14 +77,17 @@ test("server-renders the cinematic portfolio", async () => {
   assert.match(html, /COCOPet[\s\S]*Desktop Pet/);
   assert.match(html, /达人情报谷歌插件/);
   assert.match(html, /Mowen Tarot/);
+  assert.match(html, /recommendation-redacted\.png/);
   assert.match(html, /20w\+/);
   assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("COCOPet Desktop Pet"));
   assert.match(html, /Systems Builder/);
   assert.match(html, /查看系统怎么跑/);
-  assert.match(html, /最近 10 条内容/);
-  assert.match(html, /批量调查、起草、发送与 Follow-up/);
-  assert.match(html, /回写表格并提醒/);
-  assert.match(html, /单独维护经纪人、MCN/);
+  assert.match(html, /按账号时区/);
+  assert.match(html, /解析报价、币种和交付形式/);
+  assert.match(html, /个性化 Follow-up/);
+  assert.match(html, /卡在客户、达人还是运营/);
+  assert.match(html, /每位运营同时执行的达人数量约从 25\+ 提升到 35/);
+  assert.doesNotMatch(html, /团队同时执行的达人约从 25\+ 提升到 35/);
   assert.match(html, /<details[^>]*class="cinematic-flow"/);
   assert.doesNotMatch(html, /<details[^>]*open/);
 });
