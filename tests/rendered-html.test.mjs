@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { readdir, readFile } from "node:fs/promises";
+import { access, readdir, readFile } from "node:fs/promises";
 import test from "node:test";
 
 async function render(pathname = "/") {
@@ -54,18 +54,35 @@ test("server-renders the job-focused creator growth and product portfolio", asyn
   assert.match(html, /下一个环节/);
   assert.match(html, /执行跟踪/);
   assert.match(html, /达人情报谷歌插件/);
-  assert.match(html, /基于真实插件结构重绘/);
-  assert.match(html, /达人情报谷歌插件公开版结构示意图/);
+  assert.match(html, /coco-store-mock-1280x800\.jpg/);
+  assert.match(html, /真实插件 mock/);
   assert.match(html, /AM 和运营团队/);
   assert.match(html, /COCOPet Desktop Pet/);
   assert.match(html, /Mowen Tarot/);
+  assert.match(html, /projects\/coco\/personality\.gif/);
+  assert.match(html, /prefers-reduced-motion: reduce[^>]*projects\/coco\/hero-coco\.png/);
+  assert.match(html, /mccoco\.xyz 真实角色动图/);
+  assert.match(html, /mowen-xhs-featured\.jpg[\s\S]*mowen-product-home\.jpg[\s\S]*mowen-reading-result\.jpg/);
+  assert.doesNotMatch(html, /projects\/tarot\/mowen-homepage\.png/);
   assert.match(html, /mark-shi-creator-growth-cn\.pdf/);
   assert.match(html, /mark-shi-ai-product-cn\.pdf/);
-  assert.match(html, /达人 OS 系统公开版结构示意图/);
-  assert.doesNotMatch(html, /creator-intel-profile\.png|recommendation-redacted\.png/);
+  assert.match(html, /recommendation-public\.jpg/);
+  assert.doesNotMatch(html, /recommendation-redacted\.png/);
+  assert.match(html, /真实系统 · 已去敏/);
+  assert.doesNotMatch(html, /creator-intel-profile\.png|基于真实产品结构重绘|基于真实插件结构重绘/);
   assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("达人情报谷歌插件"));
   assert.ok(html.indexOf("达人情报谷歌插件") < html.indexOf("COCOPet Desktop Pet"));
   assert.doesNotMatch(html, /千万级|选择项目|vivid-project-radio|vivid-controls/);
+
+  await Promise.all([
+    "projects/outreach/flow/recommendation-public.jpg",
+    "projects/kol-intel/coco-store-mock-1280x800.jpg",
+    "projects/coco/personality.gif",
+    "projects/coco/hero-coco.png",
+    "projects/tarot/mowen-xhs-featured.jpg",
+    "projects/tarot/mowen-product-home.jpg",
+    "projects/tarot/mowen-reading-result.jpg",
+  ].map((path) => access(new URL(`../public/${path}`, import.meta.url))));
 });
 
 test("server-renders the cinematic portfolio", async () => {
@@ -77,7 +94,7 @@ test("server-renders the cinematic portfolio", async () => {
   assert.match(html, /COCOPet[\s\S]*Desktop Pet/);
   assert.match(html, /达人情报谷歌插件/);
   assert.match(html, /Mowen Tarot/);
-  assert.match(html, /recommendation-redacted\.png/);
+  assert.match(html, /recommendation-public\.jpg/);
   assert.match(html, /20w\+/);
   assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("COCOPet Desktop Pet"));
   assert.match(html, /Systems Builder/);
@@ -109,6 +126,7 @@ test("keeps both finished sites accessible and free of starter code", async () =
   assert.match(css, /:focus-visible/);
   assert.match(css, /@font-face/);
   assert.match(css, /@media \(max-width: 560px\)/);
+  assert.match(css, /portfolio-mowen-gallery[\s\S]*overflow-x:\s*auto[\s\S]*scroll-snap-type:\s*x mandatory/);
   assert.doesNotMatch(css, /linear-gradient\([^)]*purple|#6d28d9|#7c3aed/i);
 
   const previewFiles = await readdir(new URL("../app/_sites-preview", import.meta.url)).catch(() => []);

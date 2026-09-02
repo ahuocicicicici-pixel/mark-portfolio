@@ -25,6 +25,8 @@ export type PortfolioProject = {
   result: string;
   image: string;
   imageAlt: string;
+  gallery?: Array<{ image: string; alt: string }>;
+  motionFallback?: string;
   crop?: "right" | "top" | "phone";
   secondaryImage?: string;
   secondaryAlt?: string;
@@ -94,8 +96,8 @@ export const operationsFlow = [
     number: "01",
     title: "推荐",
     body: "读取 Brief，从已标签和向量化的达人库中召回候选人，再按市场、平台、内容与成本筛选。",
-    image: "/projects/outreach/flow/recommendation-redacted.png",
-    alt: "去敏后的达人推荐页面",
+    image: "/projects/outreach/flow/recommendation-public.jpg",
+    alt: "公开去敏后的达人推荐页面",
   },
   {
     number: "02",
@@ -140,8 +142,8 @@ export const projects: PortfolioProject[] = [
     features: ["Brief 自动拆解与达人推荐", "最近 10 条内容调查", "定制邮件与批量 Follow-up", "回复报价解析与表格提醒", "头部达人单独建联"],
     stack: ["React + TypeScript", "FastAPI + PostgreSQL", "Redis + Docker", "BGE-M3 + DeepSeek"],
     result: "10 位真实用户持续使用 4 个月，累计处理 30+ 个项目；人均并行项目约从 3 个提升到 4 个，每位运营同时执行的达人数量约从 25+ 提升到 35。",
-    image: "/projects/outreach/flow/recommendation-redacted.png",
-    imageAlt: "达人 OS 系统去敏后的达人推荐界面",
+    image: "/projects/outreach/flow/recommendation-public.jpg",
+    imageAlt: "达人 OS 系统严格去敏后的公开界面",
     link: "https://ops.mccoco.xyz/",
     linkLabel: "查看个人演示版",
     palette: { background: "#f48360", panel: "#ffd9c7", ink: "#17130f", accent: "#fff3e7" },
@@ -158,8 +160,9 @@ export const projects: PortfolioProject[] = [
     features: ["桌面动作与互动", "角色记忆", "故事与任务", "macOS 发布"],
     stack: ["macOS", "Product Design", "Character Experience"],
     result: "这是目前较成熟的个人产品，已经完成可安装版本与官网。",
-    image: "/projects/coco/hero-coco.png",
-    imageAlt: "COCO 从 Mac 屏幕走到书桌的产品主视觉",
+    image: "/projects/coco/personality.gif",
+    imageAlt: "COCOPet 背着旅行包走动的真实角色动图",
+    motionFallback: "/projects/coco/hero-coco.png",
     link: "https://mccoco.xyz/",
     linkLabel: "打开 COCO 官网",
     palette: { background: "#8e9f78", panel: "#e9d9bd", ink: "#172014", accent: "#f9f4e8" },
@@ -176,8 +179,8 @@ export const projects: PortfolioProject[] = [
     features: ["四个平台主页识别", "公开指标同屏查看", "历史合作精确匹配", "服务端账号权限校验"],
     stack: ["Chrome Extension", "Read-only API", "Creator Data", "Operations UX"],
     result: "AM 与运营可以在同一页面核对公开指标、历史报价、合作表现和内部评价，减少信息断层与重复踩坑。个人版现已独立运行。",
-    image: "/projects/kol-intel/creator-intel-profile.png",
-    imageAlt: "达人情报谷歌插件在 Instagram 达人主页旁显示去敏后的合作记录和公开指标",
+    image: "/projects/kol-intel/coco-store-mock-1280x800.jpg",
+    imageAlt: "COCO Creator Intel 在模拟 Instagram 达人主页旁显示公开指标和粉丝画像",
     palette: { background: "#e5b84b", panel: "#f5e9b8", ink: "#17150e", accent: "#fff8df" },
   },
   {
@@ -192,8 +195,13 @@ export const projects: PortfolioProject[] = [
     features: ["东方牌面体系", "在线抽牌", "完整官网", "小红书内容验证"],
     stack: ["Web Product", "Visual Direction", "Content"],
     result: "产品上线后获得了不错的市场反馈，相关小红书系列累计浏览 20w+。",
-    image: "/projects/tarot/mowen-homepage.png",
-    imageAlt: "墨问塔罗完整官网首页",
+    image: "/projects/tarot/mowen-xhs-featured.jpg",
+    imageAlt: "墨问塔罗小红书笔记与真实互动数据",
+    gallery: [
+      { image: "/projects/tarot/mowen-xhs-featured.jpg", alt: "墨问塔罗小红书笔记与真实互动数据" },
+      { image: "/projects/tarot/mowen-product-home.jpg", alt: "墨问塔罗产品首页与道家牌面" },
+      { image: "/projects/tarot/mowen-reading-result.jpg", alt: "墨问塔罗三牌占卜结果与解读" },
+    ],
     secondaryImage: "/projects/tarot/mowen-xhs-20w.jpg",
     secondaryAlt: "墨问塔罗小红书内容截图",
     link: "https://mowentarot.xyz/",

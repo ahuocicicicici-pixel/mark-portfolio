@@ -104,24 +104,9 @@ export function VividPortfolio() {
 
         <div className="portfolio-product-layout">
           <figure className="portfolio-product-media">
-            <div className="portfolio-system-mockup" role="img" aria-label="达人 OS 系统公开版结构示意图">
-              <div className="portfolio-mockup-toolbar"><i /><span>达人 OS · PROJECT WORKSPACE</span><b>LIVE</b></div>
-              <div className="portfolio-mockup-body">
-                <aside><span /><span /><span /><span /></aside>
-                <section>
-                  <header><strong>CAMPAIGN PIPELINE</strong><i /></header>
-                  <div className="portfolio-mockup-summary"><span /><span /><span /></div>
-                  <div className="portfolio-mockup-table">
-                    <b /><b /><b /><b />
-                    <i /><i /><i /><i />
-                    <i /><i /><i /><i />
-                    <i /><i /><i /><i />
-                  </div>
-                </section>
-              </div>
-            </div>
-            <span className="portfolio-privacy-badge">基于真实产品结构重绘</span>
-            <figcaption>公开示意图 · 真实系统已在 GrowMax 内部持续使用 4 个月</figcaption>
+            <img src={operations.image} alt={operations.imageAlt} />
+            <span className="portfolio-privacy-badge">真实系统 · 已去敏</span>
+            <figcaption>真实系统界面 · 已在 GrowMax 内部持续使用 4 个月</figcaption>
           </figure>
           <div className="portfolio-product-outcomes">
             <p className="portfolio-mini-label">WHAT THE SYSTEM CHANGED</p>
@@ -178,20 +163,8 @@ export function VividPortfolio() {
 
         <article className="portfolio-intel-case">
           <figure>
-            <div className="portfolio-intel-mockup" role="img" aria-label="达人情报谷歌插件公开版结构示意图">
-              <aside>
-                <header><b>IG</b><strong>库中记录</strong><i /></header>
-                <div className="portfolio-intel-metrics"><span /><span /><span /><span /></div>
-                <nav><b>概览</b><b>粉丝</b><b>评价</b></nav>
-                <section><strong>最近合作</strong><i /><i /><i /></section>
-              </aside>
-              <div className="portfolio-intel-profile">
-                <div className="portfolio-profile-head"><i /><span><b /><b /><b /></span></div>
-                <div className="portfolio-profile-lines"><i /><i /><i /><i /></div>
-                <footer><b>FOLLOW</b><b>MESSAGE</b></footer>
-              </div>
-            </div>
-            <span className="portfolio-privacy-badge">基于真实插件结构重绘</span>
+            <img src={creatorIntel.image} alt={creatorIntel.imageAlt} />
+            <span className="portfolio-privacy-badge">真实插件 mock</span>
           </figure>
           <div>
             <span>{creatorIntel.type}</span>
@@ -209,7 +182,19 @@ export function VividPortfolio() {
           <header><span>PERSONAL EXPERIMENTS</span><p>两个个人项目作为产品感和完整交付能力的补充证据。</p></header>
           {personalProjects.map((project) => (
             <article key={project.id}>
-              <img src={project.image} alt={project.imageAlt} />
+              {project.gallery ? (
+                <figure className="portfolio-personal-media portfolio-mowen-gallery" aria-label="Mowen Tarot 真实产品与小红书素材">
+                  {project.gallery.map((item, index) => <img src={item.image} alt={item.alt} key={item.image} loading="lazy" fetchPriority={index === 0 ? "high" : "auto"} />)}
+                </figure>
+              ) : (
+                <figure className="portfolio-personal-media portfolio-coco-motion">
+                  <picture>
+                    {project.motionFallback ? <source media="(prefers-reduced-motion: reduce)" srcSet={project.motionFallback} /> : null}
+                    <img src={project.image} alt={project.imageAlt} loading="lazy" />
+                  </picture>
+                  <figcaption>mccoco.xyz 真实角色动图</figcaption>
+                </figure>
+              )}
               <div><span>{project.type}</span><h3>{project.name}</h3><p>{project.summary}</p>{project.link ? <a href={project.link} target="_blank" rel="noreferrer">打开项目 <Arrow /></a> : null}</div>
             </article>
           ))}
