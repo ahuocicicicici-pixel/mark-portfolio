@@ -36,27 +36,39 @@ test("server-renders the job-focused creator growth and product portfolio", asyn
 
   const html = await response.text();
   assert.match(html, /<title>Mark Shi — Creator Growth &amp; AI Operations Product<\/title>/i);
-  assert.match(html, /懂海外 Creator Growth/);
-  assert.match(html, /真实运行的 AI 产品/);
+  assert.match(html, /我做海外 Creator Growth/);
+  assert.match(html, /团队在用的 AI 产品/);
   assertSharedPortfolioContent(html);
-  assert.match(html, /Kling AI 海外 Creator Growth/);
-  assert.match(html, /50\+[\s\S]*付费合作 KOL/);
-  assert.match(html, /100\+[\s\S]*上线内容/);
-  assert.match(html, /1\.5→3\.0/);
+  assert.doesNotMatch(html, /Kling AI 海外 Creator Growth|MY OWNERSHIP · FROM BRIEF TO LIVE/);
+  assert.doesNotMatch(html, /href="#business"|id="business"/);
+  assert.match(html, /href="#product"[^>]*>看产品案例/);
+  assert.match(html, /href="#work"[^>]*>看其他产品/);
+  assert.match(html, /PRODUCT CASE · 01/);
+  assert.match(html, /OTHER PRODUCTS · 02/);
+  assert.doesNotMatch(html, /PRODUCT CASE · 02|SUPPORTING WORK · 03/);
   assert.match(html, /GrowMax/);
   assert.match(html, /10[\s\S]*内部真实用户/);
   assert.match(html, /4 个月[\s\S]*持续运行/);
   assert.match(html, /30\+[\s\S]*累计处理项目/);
   assert.match(html, /3→4[\s\S]*人均并行项目[\s\S]*约 \+30%/);
-  assert.match(html, /完整工作流/);
+  assert.match(html, /完整工作流轮播/);
+  assert.match(html, /portfolio-workflow-prev/);
+  assert.match(html, /portfolio-workflow-next/);
+  assert.match(html, /portfolio-workflow-card/);
   assert.match(html, /id="portfolio-workflow-0"[^>]*checked/);
   assert.match(html, /上一个环节/);
   assert.match(html, /下一个环节/);
   assert.match(html, /执行跟踪/);
+  assert.doesNotMatch(html, /额外业务证据|帮助其实际付费合作价格提升/);
   assert.match(html, /达人情报谷歌插件/);
+  assert.match(html, /<h2>其他产品<\/h2>/);
+  assert.match(html, /<span>个人项目<\/span>/);
+  assert.doesNotMatch(html, /两个个人项目作为产品感和完整交付能力的补充证据/);
   assert.match(html, /coco-store-mock-1280x800\.jpg/);
   assert.match(html, /真实插件 mock/);
   assert.match(html, /AM 和运营团队/);
+  assert.match(html, /Chrome 商店查看/);
+  assert.match(html, /chromewebstore\.google\.com\/detail\/coco-creator-intel\/ogmmgjpedgjhhdpmmjiadgphenmineaa/);
   assert.match(html, /COCOPet Desktop Pet/);
   assert.match(html, /Mowen Tarot/);
   assert.match(html, /projects\/coco\/personality\.gif/);
@@ -66,7 +78,7 @@ test("server-renders the job-focused creator growth and product portfolio", asyn
   assert.doesNotMatch(html, /projects\/tarot\/mowen-homepage\.png/);
   assert.match(html, /mark-shi-creator-growth-cn\.pdf/);
   assert.match(html, /mark-shi-ai-product-cn\.pdf/);
-  assert.match(html, /recommendation-public\.jpg/);
+  assert.match(html, /recommendation-live\.png/);
   assert.doesNotMatch(html, /recommendation-redacted\.png/);
   assert.match(html, /真实系统 · 已去敏/);
   assert.doesNotMatch(html, /creator-intel-profile\.png|基于真实产品结构重绘|基于真实插件结构重绘/);
@@ -76,6 +88,7 @@ test("server-renders the job-focused creator growth and product portfolio", asyn
 
   await Promise.all([
     "projects/outreach/flow/recommendation-public.jpg",
+    "projects/outreach/flow/recommendation-live.png",
     "projects/kol-intel/coco-store-mock-1280x800.jpg",
     "projects/coco/personality.gif",
     "projects/coco/hero-coco.png",
@@ -95,6 +108,7 @@ test("server-renders the cinematic portfolio", async () => {
   assert.match(html, /达人情报谷歌插件/);
   assert.match(html, /Mowen Tarot/);
   assert.match(html, /recommendation-public\.jpg/);
+  assert.doesNotMatch(html, /recommendation-live\.png/);
   assert.match(html, /20w\+/);
   assert.ok(html.indexOf("达人 OS 系统") < html.indexOf("COCOPet Desktop Pet"));
   assert.match(html, /Systems Builder/);

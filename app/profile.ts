@@ -96,15 +96,17 @@ export const operationsFlow = [
     number: "01",
     title: "推荐",
     body: "读取 Brief，从已标签和向量化的达人库中召回候选人，再按市场、平台、内容与成本筛选。",
-    image: "/projects/outreach/flow/recommendation-public.jpg",
-    alt: "公开去敏后的达人推荐页面",
+    image: "/projects/outreach/flow/recommendation-live.png",
+    alt: "达人 OS 中真实运行并已去敏的达人推荐结果与候选名单页面",
+    badge: "真实系统 · 已去敏",
   },
   {
     number: "02",
     title: "建联",
-    body: "结合达人历史内容和视频文案生成个性化邮件，并按账号时区在对方工作时间分批发送。",
+    body: "结合达人历史内容和视频文案生成个性化邮件，按账号时区分批发送，并统计不同模板的发送量与回复率。",
     image: "/projects/outreach/flow/draft-redacted.png",
     alt: "去敏后的个性化邮件草稿页面",
+    badge: "真实系统 · 已去敏",
   },
   {
     number: "03",
@@ -112,6 +114,7 @@ export const operationsFlow = [
     body: "自动读取达人回复，解析报价、币种和交付形式，再回写到对应的飞书项目表。",
     image: "/projects/outreach/flow/reply-parse-redacted.png",
     alt: "去敏后的达人报价解析与回写页面",
+    badge: "真实系统 · 已去敏",
   },
   {
     number: "04",
@@ -119,6 +122,7 @@ export const operationsFlow = [
     body: "识别未回复的达人，根据原邮件与项目上下文生成个性化 Follow-up，避免人工逐个检查。",
     image: "/projects/outreach/flow/draft-redacted.png",
     alt: "去敏后的 Follow-up 邮件草稿页面",
+    badge: "真实系统 · 已去敏",
   },
   {
     number: "05",
@@ -126,6 +130,7 @@ export const operationsFlow = [
     body: "根据邮件记录更新项目状态，标记当前卡在客户、达人还是运营，并给出建议的下一步。",
     image: "/projects/outreach/campaigns-overview-redacted.jpg",
     alt: "去敏后的项目执行跟踪页面",
+    badge: "真实系统 · 已去敏",
   },
 ];
 
@@ -181,6 +186,8 @@ export const projects: PortfolioProject[] = [
     result: "AM 与运营可以在同一页面核对公开指标、历史报价、合作表现和内部评价，减少信息断层与重复踩坑。个人版现已独立运行。",
     image: "/projects/kol-intel/coco-store-mock-1280x800.jpg",
     imageAlt: "COCO Creator Intel 在模拟 Instagram 达人主页旁显示公开指标和粉丝画像",
+    link: "https://chromewebstore.google.com/detail/coco-creator-intel/ogmmgjpedgjhhdpmmjiadgphenmineaa",
+    linkLabel: "Chrome 商店查看",
     palette: { background: "#e5b84b", panel: "#f5e9b8", ink: "#17150e", accent: "#fff8df" },
   },
   {
@@ -237,7 +244,7 @@ export const businessCase = {
 };
 
 export const productCase = {
-  eyebrow: "PRODUCT CASE · 02",
+  eyebrow: "PRODUCT CASE · 01",
   metrics: [
     { value: "10", label: "内部真实用户", note: "6 位运营 + 4 位 AM" },
     { value: "4 个月", label: "持续运行", note: "非 Demo" },

@@ -86,7 +86,14 @@ export function CinematicPortfolio() {
             {operationsFlow.map((step) => (
               <article key={step.number}>
                 <header><span>{step.number}</span><h3>{step.title}</h3><p>{step.body}</p></header>
-                <figure><img src={step.image} alt={step.alt} loading="lazy" /><figcaption>真实界面 · 已去敏</figcaption></figure>
+                <figure>
+                  <img
+                    src={step.number === "01" ? operations.image : step.image}
+                    alt={step.number === "01" ? operations.imageAlt : step.alt}
+                    loading="lazy"
+                  />
+                  <figcaption>真实界面 · 已去敏</figcaption>
+                </figure>
               </article>
             ))}
           </div>
