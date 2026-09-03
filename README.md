@@ -1,5 +1,7 @@
 # Mark — Selected Work
 
+中文 | [English](README.en.md)
+
 求职作品集，集中展示四个从真实问题出发、被做成可运行产品的项目：
 
 - COCO Desktop Pet
